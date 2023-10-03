@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
+    <script src="grass.js"></script>
+    <script src="rain.js"></script>
+    <script src="mushroom.js"></script>
+    <script src="predator.js"></script>
+    <script src="grassEater.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
+<!-- Այստեղ ունենք 5 կերպար՝  Grass, GrassEater, Predator, Rain, Mushroom. Grass-ը սկսում է բազմանալ հարևան դատարկ կոորդինատներով։ Rain կերպարը պատահական սկզբունքով ընտրելով մի grass կերպար նրա վրա աճեցնում է mushroom(սունկ), որը սպիտակ գույնով է ներկայացված։
+Սունկը անմիջականորեն ազդում է grassEater-ի վրա։ GrassEater-ը ուտելով սունկը սկսսում է ստանալ 5 անգամ ավելի շատ էներգիա քամ եթե ուտեր grass։ Grass ուտելու դեպքում GrassEater-ի էնէրգիան ավելանում է մեկով։ Mushroom-ը ինչ-որ չափով ազդում է նաև predator-ի վա։ Այսպես՝ եթե GrassEater-ը ունենում է 10 և ավելի էներգիա, ապա GrassEater-ը կկարողանա ուտել Predator-ին։  
+Predator-ը ընդունակ է ուտելու GrassEater-ին։ 
+Խաղը կարող է ունենալ երկու հնարավոր ավարտ։ Առաջինը՝ եթե GrassEater-ը ուտում է բոլոր և՛ grass-ներին և՛ Predator-ներին, ապա կմահանա (կանհետանա), էներգիայի սպառման պատճառով, և այստեղ միայն կմնա Rain-ը։ Իսկ եթե Predator-ն է կարողանում ուտել բոլոր GrassEater-ներին, ապա, այսպես ասած, նա է հաղթում է խաղը։ -->

@@ -1,0 +1,21 @@
+body {
+    background-color: #CA5036;
+    margin: 0;
+    padding: 0;
+  }
+  
+ .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+ }
+canvas{
+    display: block;
+    margin: 0 auto;
+    background-color: #ba7165;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 2px solid #000000;
+    padding: 10px;
+    box-sizing: border-box;
+}
