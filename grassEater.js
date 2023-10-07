@@ -1,37 +1,23 @@
-class GrassEater {
+class GrassEater extends Parent {
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.energy = 8;
-        this.index = index;
-        this.directions = [];
+        super(x, y, index)
+        this.energy = 8
     }
     getNewCoordinates() {
         this.directions = [
-        [this.x - 1, this.y - 1],
-        [this.x, this.y - 1],
-        [this.x + 1, this.y - 1],
-        [this.x - 1, this.y],
-        [this.x + 1, this.y],
-        [this.x - 1, this.y + 1],
-        [this.x, this.y + 1],
-        [this.x + 1, this.y + 1]
+            [this.x - 1, this.y - 1],
+            [this.x, this.y - 1],
+            [this.x + 1, this.y - 1],
+            [this.x - 1, this.y],
+            [this.x + 1, this.y],
+            [this.x - 1, this.y + 1],
+            [this.x, this.y + 1],
+            [this.x + 1, this.y + 1]
         ];
     }
-
     chooseCell(character) {
         this.getNewCoordinates();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        return super.chooseCell(character)
     }
 
     mul() {
@@ -65,7 +51,7 @@ class GrassEater {
                 }
             }
         }
-        else if(RandomMushroom){
+        else if (RandomMushroom) {
             this.energy += 5
             matrix[this.y][this.x] = 0
             let newX = RandomMushroom[0]
@@ -80,7 +66,7 @@ class GrassEater {
                 }
             }
         }
-        else if(RandomPredator && this.energy >=10){
+        else if (RandomPredator && this.energy >= 10) {
             this.energy++
             matrix[this.y][this.x] = 0
             let newX = RandomPredator[0]
@@ -103,7 +89,7 @@ class GrassEater {
             this.mul()
         }
 
-        
+
     }
 
     move() {
@@ -130,9 +116,8 @@ class GrassEater {
                 break;
             }
         }
-    
+
 
 
     }
 }
-    
