@@ -1,4 +1,4 @@
-class Parent {
+module.exports = class Parent {
     constructor(x, y, index) {
         this.x = x;
         this.y = y;

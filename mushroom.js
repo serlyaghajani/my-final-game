@@ -1,4 +1,5 @@
-class Mushroom extends Parent{
+let Parent = require('./parent')
+module.exports = class Mushroom extends Parent{
   constructor(x, y, index) {
     super(x, y, index)
   }

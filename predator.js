@@ -1,4 +1,5 @@
-class Predator extends Parent{
+let Parent = require('./parent')
+module.exports = class Predator extends Parent{
     constructor(x, y, index) {
         super(x, y, index)
         this.energy = 8;

@@ -1,4 +1,5 @@
-class Grass extends Parent {
+let Parent = require('./parent')
+module.exports = class Grass extends Parent {
     constructor(x, y, index) {
         super(x, y, index)
         this.multiply = 0
