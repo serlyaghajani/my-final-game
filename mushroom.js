@@ -1,4 +1,5 @@
 let Parent = require('./parent')
+let random = require("./random");
 module.exports = class Mushroom extends Parent{
   constructor(x, y, index) {
     super(x, y, index)

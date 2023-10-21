@@ -1,3 +1,4 @@
+var matrix = []
 var side = 60;
 var sideX = 15;
 var sideY = 18;
@@ -7,7 +8,7 @@ const socket = io()
 var side = 60;
 
 
-function setup() {
+function setup() { console.log(5555)
     createCanvas(sideX * side, sideY * side);
     background('#acacac'); 
 

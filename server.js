@@ -3,6 +3,8 @@ const app = express()
 const http = require('http')
 const server = http.createServer(app)
 const io = require("socket.io")(server)
+let random = require("./random");
+
 
 matrix = []
 grassArr = [];
@@ -25,21 +27,21 @@ matrix = []
 const sideX = 15;
 const sideY = 18;
 
-function random(min, max) {
-    if (min === undefined && max === undefined) {
-        return Math.random();
-    } else if (max === undefined) {
-        max = min;
-        min = 0;
-    }
-    return Math.random() * (max - min) + min;
-}
+// function random(min, max) {
+//     if (min === undefined && max === undefined) {
+//         return Math.random();
+//     } else if (max === undefined) {
+//         max = min;
+//         min = 0;
+//     }
+//     return Math.random() * (max - min) + min;
+// }
 
 function character(char, quantity) {
     let initialNumber = 0;
     while (initialNumber < quantity) {
-        let x = Math.floor(random(0, sideX));
-        let y = Math.floor(random(0, sideY));
+        let x = Math.floor(random(sideX));
+        let y = Math.floor(random(sideY));
         if (matrix[y][x] == 0) {
             matrix[y][x] = char;
         }
@@ -102,7 +104,7 @@ function startInterval() {
     clearInterval(intName)
     intName = setInterval(function () {
         playGame()
-    }, 1000)
+    }, 200)
 }
 function playGame() {
     for (var i in grassArr) {
