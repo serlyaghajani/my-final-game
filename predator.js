@@ -1,5 +1,6 @@
 let Parent = require('./parent')
-let random = require("./random");
+const io = require("./server");
+
 module.exports = class Predator extends Parent{
     constructor(x, y, index) {
         super(x, y, index)
@@ -25,17 +26,19 @@ module.exports = class Predator extends Parent{
     }
 
     mul() {
-        var newCell = random(this.chooseCell(2));//[5,4]
+        var newCell = this.selectRandomCell(2);//[5,4]
         if (newCell) {
             var newPredator = new Predator(newCell[0], newCell[1], this.index);
             predatorArr.push(newPredator);
             matrix[newCell[1]][newCell[0]] = 3;
+            statisticsObj.predator++;
+            io.emit("change statistics", statisticsObj);
         }
     }
 
     eat() {
-        let foods = this.chooseCell(2)
-        let food = random(foods)
+        // let foods = this.chooseCell(2)
+        let food = this.selectRandomCell(2)
         if (food) {
             this.energy++;
             matrix[this.y][this.x] = 0
@@ -61,8 +64,8 @@ module.exports = class Predator extends Parent{
 
     move() {
         this.energy--;
-        let emptyCells = this.chooseCell(0)
-        let newCell = random(emptyCells)
+        // let emptyCells = this.chooseCell(0)
+        let newCell = this.selectRandomCell(0)
         if (newCell) {
             let newX = newCell[0]
             let newY = newCell[1]

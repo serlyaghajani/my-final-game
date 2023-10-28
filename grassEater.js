@@ -1,5 +1,6 @@
 let Parent = require('./parent')
-let random = require("./random");
+const io = require("./server");
+
 module.exports = class GrassEater extends Parent {
     constructor(x, y, index) {
         super(x, y, index)
@@ -23,21 +24,23 @@ module.exports = class GrassEater extends Parent {
     }
 
     mul() {
-        var newCell = random(this.chooseCell(0));//[5,4]
+        var newCell = this.selectRandomCell(this.chooseCell(0));//[5,4]
         if (newCell) {
             var newGrassEater = new GrassEater(newCell[0], newCell[1], this.index);
             grassEaterArr.push(newGrassEater);
             matrix[newCell[1]][newCell[0]] = 2;
+            statisticsObj.grassEater++;
+            io.emit("change statistics", statisticsObj);
         }
     }
 
     eat() {
-        let foods = this.chooseCell(1)
-        let MushroomFood = this.chooseCell(5)
-        let PredatorFood = this.chooseCell(3)
-        let Randomfood = random(foods)
-        let RandomMushroom = random(MushroomFood)
-        let RandomPredator = random(PredatorFood)
+        // let foods = this.chooseCell(1)
+        // let MushroomFood = this.chooseCell(5)
+        // let PredatorFood = this.chooseCell(3)
+        let Randomfood = this.selectRandomCell(1)
+        let RandomMushroom = this.selectRandomCell(5)
+        let RandomPredator = this.selectRandomCell(3)
         if (Randomfood) {
             this.energy++;
             matrix[this.y][this.x] = 0
@@ -96,8 +99,8 @@ module.exports = class GrassEater extends Parent {
 
     move() {
         this.energy--;
-        let emptyCells = this.chooseCell(0)
-        let newCell = random(emptyCells)
+        // let emptyCells = this.chooseCell(0)
+        let newCell = this.selectRandomCell(0)
         if (newCell) {
             let newX = newCell[0]
             let newY = newCell[1]

@@ -1,5 +1,6 @@
 let Parent = require('./parent')
-let random = require("./random");
+const io = require("./server");
+
 module.exports = class Grass extends Parent {
     constructor(x, y, index) {
         super(x, y, index)
@@ -7,13 +8,18 @@ module.exports = class Grass extends Parent {
     }
     mul() {
         this.multiply++;
-        var newCell = random(this.chooseCell(0));
-        console.log(newCell, this.multiply);
+        var newCell = this.selectRandomCell(this.chooseCell(0));
+        // console.log(newCell, this.multiply);
         if (this.multiply >= 8 && newCell) {
             var newGrass = new Grass(newCell[0], newCell[1], this.index);
             grassArr.push(newGrass);
             matrix[newCell[1]][newCell[0]] = 1;
             this.multiply = 0;
+            statisticsObj.grass++;
+            console.log(statisticsObj);
+            
+            io.emit("change statistics", statisticsObj);
+
         }
     }
 

@@ -16,6 +16,11 @@ module.exports = class Parent {
         ];
 
     }
+    selectRandomCell(character) {
+        const cells = this.chooseCell(character);
+        const randomIndex = Math.floor(Math.random() * cells.length);
+        return cells[randomIndex];
+    }
     chooseCell(character) {
         var found = [];
         for (var i in this.directions) {

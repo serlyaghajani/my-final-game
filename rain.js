@@ -1,5 +1,5 @@
 let Parent = require('./parent')
-let random = require("./random");
+
 module.exports = class Rain extends Parent{
     constructor(x, y, index) {
         super(x, y, index)
@@ -24,8 +24,8 @@ module.exports = class Rain extends Parent{
     }
     
     blossom() {
-        let target = this.chooseCell(1)
-        let TargetMushroom = random(target)
+        // let target = this.chooseCell(1)
+        let TargetMushroom = this.selectRandomCell(1)
         if (TargetMushroom) {
             let newX = TargetMushroom[0]
             let newY = TargetMushroom[1]
@@ -43,8 +43,8 @@ module.exports = class Rain extends Parent{
         }
     }
     move() {
-        let emptyCells = this.chooseCell(0)
-        let newCell = random(emptyCells)
+        // let emptyCells = this.chooseCell(0)
+        let newCell = this.selectRandomCell(0)
         if (newCell) {
             let newX = newCell[0]
             let newY = newCell[1]

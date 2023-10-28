@@ -1,6 +1,8 @@
 let Parent = require('./parent')
-let random = require("./random");
-module.exports = class Mushroom extends Parent{
+const io = require("./server");
+
+// let random = require("./random");
+module.exports = class Mushroom extends Parent {
   constructor(x, y, index) {
     super(x, y, index)
   }
@@ -19,17 +21,23 @@ module.exports = class Mushroom extends Parent{
   }
 
   chooseCell(character) {
-      this.getNewCoordinates();
-      return super.chooseCell(character)
-  
+    this.getNewCoordinates();
+    return super.chooseCell(character)
+
   }
 
   mul() {
-    var newCell = random(this.chooseCell(0));
+    var newCell = this.selectRandomCell(this.chooseCell(0));
+    console.log('mashroom');
+    
     if (newCell) {
       var newMushroom = new Mushroom(newCell[0], newCell[1], this.index);
       mushroomArr.push(newMushroom);
       matrix[newCell[1]][newCell[0]] = 4;
+      console.log(statisticsObj);
+      
+      statisticsObj.mushroom++;
+      io.emit("change statistics", statisticsObj);
     }
   }
 }

@@ -3,7 +3,7 @@ const app = express()
 const http = require('http')
 const server = http.createServer(app)
 const io = require("socket.io")(server)
-let random = require("./random");
+module.exports = io
 
 
 matrix = []
@@ -27,15 +27,22 @@ matrix = []
 const sideX = 15;
 const sideY = 18;
 
-// function random(min, max) {
-//     if (min === undefined && max === undefined) {
-//         return Math.random();
-//     } else if (max === undefined) {
-//         max = min;
-//         min = 0;
-//     }
-//     return Math.random() * (max - min) + min;
-// }
+statisticsObj = {
+    grass: 0,
+    grassEater: 0,
+    predator: 0,
+    mushroom: 0,
+}
+
+function random(min, max) {
+    if (min === undefined && max === undefined) {
+        return Math.random();
+    } else if (max === undefined) {
+        max = min;
+        min = 0;
+    }
+    return Math.random() * (max - min) + min;
+}
 
 function character(char, quantity) {
     let initialNumber = 0;
@@ -55,11 +62,20 @@ for (let i = 0; i < sideY; i++) {
         matrix[i].push(0);
     }
 }
-//...
 
-//...
-// console.log(matrix)
 function initGame() {
+   matrix=[]
+   for (let i = 0; i < sideY; i++) {
+    matrix.push([]);
+    for (let j = 0; j < sideX; j++) {
+        matrix[i].push(0);
+    }
+}
+    grassArr = [];
+    grassEaterArr = [];
+    predatorArr = [];
+    rainArr = [];
+    mushroomArr = [];
     character(1, 150);
     character(2, 10);
     character(3, 7)
@@ -98,13 +114,13 @@ function initArrays() {
         }
     }
 }
-const speed = 300
+let speed = 300
 let intName;
 function startInterval() {
     clearInterval(intName)
     intName = setInterval(function () {
         playGame()
-    }, 200)
+    }, speed)
 }
 function playGame() {
     for (var i in grassArr) {
@@ -121,10 +137,32 @@ function playGame() {
     }
     io.emit('update matrix', matrix)
 }
+function handleChangeSeason(season) {
+
+}
 io.on('connection', function (socket) {
     socket.emit('update matrix', matrix)
     initGame()
+    socket.on('change seasons', handleChangeSeason)
+    socket.on('restart game', handleRestartGame)
 })
+function handleRestartGame() {
+    clearInterval(intName)
+    initGame()
+}
+function handleChangeSeason(season) {
+    if (season == 1) {
+        speed = 1000
+    }
+    else if (season == 2 || season == 4) {
+        speed = 700
+    }
+    else {
+        speed = 300
+    }
+    startInterval()
+
+}
 server.listen(3000, () => {
     console.log('server is listening to port 3000')
 })
