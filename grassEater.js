@@ -24,7 +24,10 @@ module.exports = class GrassEater extends Parent {
     }
 
     mul() {
-        var newCell = this.selectRandomCell(this.chooseCell(0));//[5,4]
+        
+        //var newCell = this.selectRandomCell(this.chooseCell(0));//[5,4]
+        var newCell = this.selectRandomCell(0);//[5,4]
+
         if (newCell) {
             var newGrassEater = new GrassEater(newCell[0], newCell[1], this.index);
             grassEaterArr.push(newGrassEater);
@@ -57,7 +60,7 @@ module.exports = class GrassEater extends Parent {
             }
         }
         else if (RandomMushroom) {
-            this.energy += 5
+            this.energy += 8
             matrix[this.y][this.x] = 0
             let newX = RandomMushroom[0]
             let newY = RandomMushroom[1]

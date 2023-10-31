@@ -40,7 +40,7 @@ module.exports = class Predator extends Parent{
         // let foods = this.chooseCell(2)
         let food = this.selectRandomCell(2)
         if (food) {
-            this.energy++;
+            this.energy++;  
             matrix[this.y][this.x] = 0
             let newX = food[0]
             let newY = food[1]
@@ -53,7 +53,7 @@ module.exports = class Predator extends Parent{
                     break;
                 }
             }
-            if (this.energy >= 20) {
+            if (this.energy >= 5) {
                 this.mul()
             }
         }

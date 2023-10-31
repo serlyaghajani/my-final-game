@@ -27,17 +27,17 @@ module.exports = class Mushroom extends Parent {
   }
 
   mul() {
-    var newCell = this.selectRandomCell(this.chooseCell(0));
+    var newCell = this.selectRandomCell(0);
     console.log('mashroom');
     
     if (newCell) {
       var newMushroom = new Mushroom(newCell[0], newCell[1], this.index);
       mushroomArr.push(newMushroom);
       matrix[newCell[1]][newCell[0]] = 4;
-      console.log(statisticsObj);
+      // console.log(statisticsObj);
       
-      statisticsObj.mushroom++;
-      io.emit("change statistics", statisticsObj);
+      // statisticsObj.mushroom++;
+      // io.emit("change statistics", statisticsObj);
     }
   }
 }

@@ -18,13 +18,13 @@ socket.on("change statistics", handleAddStatistics);
 const grass = document.querySelector("#grass");
 const grassEater = document.querySelector("#grassEater");
 const predator = document.querySelector("#predator");
-const mushroom = document.querySelector("#mushroom");
+// const mushroom = document.querySelector("#mushroom");
 
 function handleAddStatistics(obj) {
 grass.innerText = "New grasses: " + obj.grass;
 grassEater.innerText = "New grass eaters: " + obj.grassEater;
 predator.innerText = "New predators: " + obj.predator;
-mushroom.innerText = "New mushrooms: " + obj.mushroom;
+// mushroom.innerText = "New mushrooms: " + obj.mushroom;
 }
 
 const seasonBtn = document.querySelector('#seasons')

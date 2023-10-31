@@ -78,7 +78,7 @@ function initGame() {
     mushroomArr = [];
     character(1, 150);
     character(2, 10);
-    character(3, 7)
+    character(3, 10)
     character(4, 7)
     startInterval();
     initArrays();
@@ -136,6 +136,8 @@ function playGame() {
         rainArr[i].blossom();
     }
     io.emit('update matrix', matrix)
+    io.emit('change statistics', statisticsObj)
+   
 }
 function handleChangeSeason(season) {
 
